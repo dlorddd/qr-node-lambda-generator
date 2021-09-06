@@ -1,0 +1,12 @@
+{
+  "name": "qr-generator-node-lambda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Badreddine BENHMIDA"
+  },
+  "dependencies": {
+    "yaqrcode": "^0.2.1"
+  }
+}
