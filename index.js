@@ -3,21 +3,34 @@ var qrcode = require('yaqrcode');
 /**
  * Generate qr codes from a list of strings (a qr code for each string)
  */
-exports.handler = async (event) => {
-  const requestBody = event.body;
-  
-  if (event.httpMethod !== 'POST' || !requestBody.items) {
-    return {
-      code: 400,
-      message: 'Malfofrmed request.'
-    }
-  }
+ var qrcode = require('yaqrcode');
 
-  let result = requestBody.items.map(e => ({
-    item: e,
-    qr: qrcode(e), 
-  }))
+ exports.handler = async (event) => {
+   const requestBody = JSON.parse(event.body);
 
-  return result;
-};
+   if (event.httpMethod !== 'POST' || !requestBody.items) {
+     return {
+       statusCode: 400,
+       headers: {
+         "x-custom-header" : "alpha"
+       },
+       body: 'Malfofrmed request.'
+     }
+   }
+
+    let responseBody = requestBody.items.map(e => ({
+      item: e,
+      qr: qrcode(e), 
+    }))
+
+    let response = {
+      statusCode: 200,
+      headers: {
+        "x-custom-header" : "alpha"
+      },
+      body: JSON.stringify(responseBody)
+     };
+
+     return response;
+ };
 
