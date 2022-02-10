@@ -1,8 +1,8 @@
 /**
  * Generate qr codes from a list of strings (a qr code for each string) :)
  */
-import pkg from '@cheprasov/qrcode'
-const {QRCodeCanvas} = pkg
+
+const qr = require('@cheprasov/qrcode/src/QRCodeCanvas')
 
 exports.handler = async (event) => {
     const requestBody = JSON.parse(event.body);
@@ -19,7 +19,7 @@ exports.handler = async (event) => {
 
     let responseBody = requestBody.items.map(e => ({
         item: e,
-        qr: new QRCodeCanvas(e).toDataURL(),
+        qr: new qr(e).toDataURL(),
     }))
 
     let response = {
