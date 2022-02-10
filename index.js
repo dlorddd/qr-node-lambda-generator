@@ -19,7 +19,7 @@ exports.handler = async (event) => {
 
     let responseBody = requestBody.items.map(e => ({
         item: e,
-        qr: qr.imageSync(e, {type: 'png'}),
+        qr: [...qr.imageSync(e, {type: 'png', size: 1})],
     }))
 
     let response = {
