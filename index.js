@@ -5,6 +5,18 @@
 const qr = require("qr-image")
 
 exports.handler = async (event) => {
+    if (event.httpMethod === 'OPTIONS'){
+        return {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST"
+            },
+            body: JSON.stringify('Hello from Lambda!'),
+        };
+    }
+
     const requestBody = JSON.parse(event.body);
 
     if (event.httpMethod !== 'POST' || !requestBody.items) {
@@ -22,14 +34,12 @@ exports.handler = async (event) => {
         qr: [...qr.imageSync(e, {type: 'png', size: 1})],
     }))
 
-    let response = {
+    return {
         statusCode: 200,
         headers: {
             "x-custom-header": "alpha"
         },
         body: JSON.stringify(responseBody)
     };
-
-    return response;
 };
 
