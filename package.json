@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "qr-node-lambda-generator",
   "version": "1.0.0",
   "dependencies": {
