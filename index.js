@@ -5,25 +5,15 @@
 const qr = require("qr-image")
 
 exports.handler = async (event) => {
-    if (event.httpMethod === 'OPTIONS'){
-        return {
-            statusCode: 200,
-            headers: {
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "OPTIONS,POST"
-            },
-            body: JSON.stringify('Hello from Lambda!'),
-        };
-    }
-
     const requestBody = JSON.parse(event.body);
 
     if (event.httpMethod !== 'POST' || !requestBody.items) {
         return {
             statusCode: 400,
             headers: {
-                "x-custom-header": "alpha"
+                "Access-Control-Allow-Headers" : "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "*"
             },
             body: 'Malformed request.'
         }
@@ -37,7 +27,9 @@ exports.handler = async (event) => {
     return {
         statusCode: 200,
         headers: {
-            "x-custom-header": "alpha"
+            "Access-Control-Allow-Headers" : "*",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*"
         },
         body: JSON.stringify(responseBody)
     };
