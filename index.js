@@ -1,7 +1,8 @@
 /**
  * Generate qr codes from a list of strings (a qr code for each string) :)
  */
-import {QRCodeCanvas} from '@cheprasov/qrcode'
+import pkg from '@cheprasov/qrcode'
+const {QRCodeCanvas} = pkg
 
 exports.handler = async (event) => {
     const requestBody = JSON.parse(event.body);
