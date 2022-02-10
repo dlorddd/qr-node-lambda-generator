@@ -1,7 +1,7 @@
 var qrcode = require('yaqrcode');
 
 /**
- * Generate qr codes from a list of strings (a qr code for each string)
+ * Generate qr codes from a list of strings (a qr code for each string) :)
  */
  var qrcode = require('yaqrcode');
 
